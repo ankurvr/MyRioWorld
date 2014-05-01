@@ -58,7 +58,7 @@
 
     function getAlbums() {
         FB.api('/me?fields=albums', function (response) {
-            console.dir(response);
+            //console.dir(response);
             if (typeof response.albums != "undefined") {
 
                 setAlbums(response.albums.data);
@@ -79,11 +79,10 @@
             $('#thumbnail_list').html('');
             for (i = 0; i < size; i++)
             {
-                div = '<div class="large-4 columns"><div class="panel img-shadow"><img id="'+ data[i].cover_photo +'" src="img/default.png" /><p>'+data[i]['name']+'</p></div></div>';
+                div = '<div class="large-4 columns" onclick="getAlbumPhotos('+ data[i].id +')"><div class="panel img-shadow"><img id="'+ data[i].cover_photo +'" src="img/default.png" /><p>'+data[i]['name']+'</p></div></div>';
                 $('#thumbnail_list').append(div);
                 FB.api('/' + data[i].cover_photo, function (response)
                 {
-                    console.dir(response);
                     if (response && !response.error)
                     {
                         $('#'+response.id).attr('src', response.images[0]['source']);
@@ -108,6 +107,36 @@
             else
             {
                 $(element).hide();
+            }
+        });
+    }
+
+    function getAlbumPhotos(album_id)
+    {
+        FB.api('/' + album_id+'/photos', function (response)
+        {
+            if (response && !response.error)
+            {
+                var count = response.data.length;
+                var album_images, i;
+
+                $('#album_photos').html('');
+                for(i=0;i<count;i++)
+                {
+                    album_images = '<a class="my_album" href=":src" title=""></a>';
+                    album_images = album_images.replace(':src', response.data[i]['source']);
+                    $('#album_photos').append(album_images);
+                }
+                $(".my_album").colorbox({
+                    rel:'my_album',
+                    loop: true,
+                    slideshow: true,
+                    slideshowSpeed: 2500,
+                    slideshowAuto: true,
+                    slideshowStart: 'Start',
+                    slideshowStop: 'Stop'
+                });
+                $('#album_photos > a:first').click();
             }
         });
     }

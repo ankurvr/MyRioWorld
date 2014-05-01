@@ -7,8 +7,15 @@
     <title>Foundation 4</title>
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/colorbox.css">
+    <link rel="stylesheet" href="lib/jquery.fancybox.css">
+    <link rel="stylesheet" href="lib/Fancybox/helpers/jquery.fancybox-buttons.css">
+    <link rel="stylesheet" href="lib/Fancybox/helpers/jquery.fancybox-thumbs.css">
+
     <script src="js/vendor/custom.modernizr.js"></script>
     <script src="js/vendor/jquery.js"></script>
+    <script src="js/jquery.colorbox-min.js"></script>
+
     <script>
         document.write('<script src=' +
             ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
@@ -63,7 +70,7 @@
         <div class="row" id="thumbnail_list">
             <div class="large-4 columns">
                 <div class="panel img-shadow">
-                    <img id="coverpic" src="img/img.jpg" />
+                    <img id="coverpic" src="img/default.png" />
                     <p>Iron Man</p>
                 </div>
             </div>
@@ -92,6 +99,9 @@
             </div>
         </div>
     </div>
+</div>
+<div style="display: none;" id="album_photos">
+
 </div>
 </body>
 </html>

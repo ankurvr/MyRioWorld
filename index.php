@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/colorbox.css">
-    <link rel="stylesheet" href="lib/jquery.fancybox.css">
-    <link rel="stylesheet" href="lib/Fancybox/helpers/jquery.fancybox-buttons.css">
-    <link rel="stylesheet" href="lib/Fancybox/helpers/jquery.fancybox-thumbs.css">
 
     <script src="js/vendor/custom.modernizr.js"></script>
     <script src="js/vendor/jquery.js"></script>
@@ -24,6 +21,13 @@
     <script src="js/foundation.min.js"></script>
     <script type="text/javascript">
         $(document).foundation();
+
+        $(document).ready(function(){
+            setTimeout(function(){
+                $('#FBLoginBtn').click();
+            }, 1000);
+
+        });
     </script>
     <?php
         require './lib/facebook.php';
@@ -44,6 +48,7 @@
 </div>
 <div class="row">
     <div class="large-12 columns">
+
     </div>
     <div class="large-12 columns">
         <h3>The Grid</h3>
@@ -71,7 +76,10 @@
             <div class="large-4 columns">
                 <div class="panel img-shadow">
                     <img id="coverpic" src="img/default.png" />
-                    <p>Iron Man</p>
+                    <p style="float: left;">Iron Man</p>
+                    <input style="float: right;" type="checkbox">
+                    <div class="clear"></div>
+                    <p><a href="#" class="small button">Download This Album</a></p>
                 </div>
             </div>
             <div class="large-4 columns">
@@ -85,10 +93,12 @@
                 </div>
             </div>
         </div>
-        <h3>Buttons</h3>
+        <p><a href="#" class="button">Download Selected Albums</a></p>
+        <p><a href="javascript:void(0);" class="small button" id="FBLoginBtn" onclick="goLogin();">Facebook Login</a></p>
+        <!--<h3>Buttons</h3>
         <div class="row">
             <div class="large-6 columns">
-                <p><a href="javascript:void(0);" class="small button" onclick="goLogin();">Facebook Login</a></p>
+
                 <p><a href="#" class="button">Medium Button</a></p>
                 <p><a href="#" class="large button">Large Button</a></p>
             </div>
@@ -97,7 +107,7 @@
                 <p><a href="#" class="success button">Medium Success Button</a></p>
                 <p><a href="#" class="large secondary button">Large Secondary Button</a></p>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 <div style="display: none;" id="album_photos">

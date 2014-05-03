@@ -22,6 +22,8 @@
         });
     };
 
+    var albums = new Array();
+
     (function () {
         var e = document.createElement('script');
         e.async = true;
@@ -79,13 +81,13 @@
             $('#thumbnail_list').html('');
             for (i = 0; i < size; i++)
             {
-                div = '<div class="large-4 columns" onclick="getAlbumPhotos('+ data[i].id +')"><div class="panel img-shadow"><img id="'+ data[i].cover_photo +'" src="img/default.png" /><p>'+data[i]['name']+'</p></div></div>';
+                div = '<div class="large-4 columns" onclick="getAlbumPhotos('+ data[i].id +', \'popup\')"><div class="panel img-shadow"><img id="'+ data[i].cover_photo +'" src="img/default.png" /><p style="float: left;margin-top:7px;">'+data[i]['name']+'</p><input style="float: right;" type="checkbox" id="'+data[i].id+'"><div class="clear"></div><p><a href="#" class="small button">Download This Album</a></p></div></div>';
                 $('#thumbnail_list').append(div);
                 FB.api('/' + data[i].cover_photo, function (response)
                 {
                     if (response && !response.error)
                     {
-                        $('#'+response.id).attr('src', response.images[0]['source']);
+                        $('img#'+response.id).attr('src', response.images[0]['source']);
                     }
                 });
             }
@@ -111,7 +113,7 @@
         });
     }
 
-    function getAlbumPhotos(album_id)
+    function getAlbumPhotos(album_id, type)
     {
         FB.api('/' + album_id+'/photos', function (response)
         {
@@ -120,24 +122,59 @@
                 var count = response.data.length;
                 var album_images, i;
 
-                $('#album_photos').html('');
+                if(type == 'popup')
+                {
+                    $('#album_photos').html('');
+                }
+                else
+                {
+                    albums['abl_'+album_id] = [];
+                }
                 for(i=0;i<count;i++)
                 {
-                    album_images = '<a class="my_album" href=":src" title=""></a>';
-                    album_images = album_images.replace(':src', response.data[i]['source']);
-                    $('#album_photos').append(album_images);
+                    if(type == 'popup')
+                    {
+                        album_images = '<a class="my_album" href=":src" title=""></a>';
+                        album_images = album_images.replace(':src', response.data[i]['source']);
+                        $('#album_photos').append(album_images);
+                    }
+                    else
+                    {
+                        albums[album_id].push(response.data[i]['source']);
+                    }
                 }
-                $(".my_album").colorbox({
-                    rel:'my_album',
-                    loop: true,
-                    slideshow: true,
-                    slideshowSpeed: 2500,
-                    slideshowAuto: true,
-                    slideshowStart: 'Start',
-                    slideshowStop: 'Stop'
-                });
-                $('#album_photos > a:first').click();
+                if(type == 'popup')
+                {
+                    $(".my_album").colorbox({
+                        rel:'my_album',
+                        loop: true,
+                        slideshow: true,
+                        slideshowSpeed: 2500,
+                        slideshowAuto: true,
+                        slideshowStart: 'Start',
+                        slideshowStop: 'Stop'
+                    });
+                    $('#album_photos > a:first').click();
+                }
             }
         });
+    }
+
+    function getSelected()
+    {
+        var n = $('input:checkbox:checked').length;
+        if(n > 0)
+        {
+            $('input:checkbox:checked').each(function()
+            {
+                getAlbumPhotos($(this).attr("id"), 'array');
+            });
+            document.getElementById('array').innerHTML = albums;
+            console.log(albums);
+        }
+        else
+        {
+            alert("Please select any one album to download");
+        }
     }
 </script>

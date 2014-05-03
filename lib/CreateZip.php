@@ -1,14 +1,6 @@
 <?php
-
-    /**
-     * Created by PhpStorm.
-     * User: rama
-     * Date: 1/5/14
-     * Time: 6:42 PM
-     */
     class CreateZip
     {
-
         public function create_zip($files = array(), $destination = '', $overwrite = false)
         {
             //if the zip file already exists and overwrite is false, return false
@@ -51,3 +43,4 @@
             }
         }
     }
+?>

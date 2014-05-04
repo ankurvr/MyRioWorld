@@ -2,11 +2,17 @@
 
     require __DIR__ . '/facebook_src/facebook.php';
 
+    //myrioworld.com
     $facebook = new Facebook(array(
         'appId'  => '697462916966654',
         'secret' => '050ed09e8b63c32f511d9376a24ba55d',
     ));
 
+    //ankur.pro
+    /*$facebook = new Facebook(array(
+        'appId'  => '369335606538389',
+        'secret' => '13c283403becea0c99f27cc55b36c77c',
+    ));*/
 ?>
 <div id="fb-root"></div>
 <script>

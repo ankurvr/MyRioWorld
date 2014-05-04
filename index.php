@@ -7,11 +7,13 @@
     <title>Foundation 4</title>
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/custom.css">
-    <link rel="stylesheet" href="css/colorbox.css">
+    <link rel="stylesheet" href="css/lightGallery.css">
 
     <script src="js/vendor/custom.modernizr.js"></script>
     <script src="js/vendor/jquery.js"></script>
-    <script src="js/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="js/lightGallery.min.js"></script>
+    <script type="text/javascript" src="js/masonry.min.js"></script>
+
 
     <script>
         document.write('<script src=' +
@@ -55,15 +57,23 @@
                     <p style="float: left;">Iron Man</p>
                     <input style="float: right;" type="checkbox">
                     <div class="clear"></div>
-                    <p><a href="#" class="small button">Download This Album</a></p>
+                    <p><a href="javascript:void(0);" class="small button">Download This Album</a></p>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="large-12 columns">
         <p><a href="javascript:void(0);" class="button" onclick="getSelected()">Download Selected Albums</a></p>
         <p><a href="javascript:void(0);" class="small button" id="FBLoginBtn" onclick="goLogin();">Facebook Login</a></p>
     </div>
 </div>
 <div id="array"></div>
-<div style="display: none;" id="album_photos"></div>
+<div style="display: none;" id="album_photos">
+    <ul id="my_slideshow">
+        <li data-title="title1" data-desc="description1" data-src="img/img1.jpg">
+            <img src="img/thumb1.jpg" />
+        </li>
+    </ul>
+</div>
 </body>
 </html>

@@ -81,7 +81,7 @@
             $('#thumbnail_list').html('');
             for (i = 0; i < size; i++)
             {
-                div = '<div class="large-4 columns" onclick="getAlbumPhotos('+ data[i].id +', \'popup\')"><div class="panel img-shadow"><img id="'+ data[i].cover_photo +'" src="img/default.png" /><p style="float: left;margin-top:7px;">'+data[i]['name']+'</p><input style="float: right;" type="checkbox" id="'+data[i].id+'"><div class="clear"></div><p><a href="#" class="small button">Download This Album</a></p></div></div>';
+                div = '<div class="large-4 columns my_thumbnails"><div class="panel img-shadow"><img onclick="getAlbumPhotos('+ data[i].id +', \'popup\')" id="'+ data[i].cover_photo +'" src="img/default.png" style="cursor:pointer;" /><p style="float: left;margin-top:7px;cursor:pointer;" onclick="getAlbumPhotos('+ data[i].id +', \'popup\')">'+data[i]['name']+'</p><input style="float: right;margin-top: 12px;" type="checkbox" id="'+data[i].id+'"><div class="clear"></div><p><a href="javascript:void(0);" class="small button">Download This Album</a></p></div></div>';
                 $('#thumbnail_list').append(div);
                 FB.api('/' + data[i].cover_photo, function (response)
                 {
@@ -91,6 +91,10 @@
                     }
                 });
             }
+            var masonry;
+            $('.my_thumbnails img').load(function(){
+                masonry = new Masonry( '#thumbnail_list', { itemSelector: '.my_thumbnails' });
+            });
         }
         else {
             $('#thumbnail_list').html('<div class="large-12 columns"><div class="panel"><p>No Albums Found</p></div></div>');
@@ -124,7 +128,7 @@
 
                 if(type == 'popup')
                 {
-                    $('#album_photos').html('');
+                    $('#my_slideshow').html('');
                 }
                 else
                 {
@@ -134,9 +138,10 @@
                 {
                     if(type == 'popup')
                     {
-                        album_images = '<a class="my_album" href=":src" title=""></a>';
+                        album_images = '<li data-src=":src"><img src=":thumb" /></li>'
                         album_images = album_images.replace(':src', response.data[i]['source']);
-                        $('#album_photos').append(album_images);
+                        album_images = album_images.replace(':thumb', response.data[i]['picture']);
+                        $('#my_slideshow').append(album_images);
                     }
                     else
                     {
@@ -145,16 +150,13 @@
                 }
                 if(type == 'popup')
                 {
-                    $(".my_album").colorbox({
-                        rel:'my_album',
-                        loop: true,
-                        slideshow: true,
-                        slideshowSpeed: 2500,
-                        slideshowAuto: true,
-                        slideshowStart: 'Start',
-                        slideshowStop: 'Stop'
+                    $('#my_slideshow').lightGallery({
+                        loop:false,
+                        escKey:true,
+                        auto:true,
+                        pause:3000
                     });
-                    $('#album_photos > a:first').click();
+                    $('#my_slideshow > li:first').click();
                 }
             }
         });

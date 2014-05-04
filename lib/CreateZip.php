@@ -1,7 +1,7 @@
 <?php
     class CreateZip
     {
-        public function create_zip($files = array(), $destination = '', $overwrite = false)
+        public static function create_zip($files = array(), $destination = '', $overwrite = false)
         {
             //if the zip file already exists and overwrite is false, return false
             if (file_exists($destination) && !$overwrite) {

@@ -1,6 +1,6 @@
 <?php
 
-    require __DIR__ . '/facebook_src/facebook.php';
+    require 'facebook_src/facebook.php';
 
     //myrioworld.com
     $facebook = new Facebook(array(
@@ -160,7 +160,8 @@
                         loop:false,
                         escKey:true,
                         auto:true,
-                        pause:3000
+                        pause:3000,
+                        speed: '500'
                     });
                     $('#my_slideshow > li:first').click();
                 }

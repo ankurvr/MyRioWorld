@@ -28,7 +28,9 @@
         });
     };
 
-    var albums = new Array();
+    var albums = [];
+    var AllAlbums = [];
+    var TotalAblums = 0;
 
     (function () {
         var e = document.createElement('script');
@@ -87,7 +89,7 @@
             $('#thumbnail_list').html('');
             for (i = 0; i < size; i++)
             {
-                div = '<div class="large-4 columns my_thumbnails"><div class="panel img-shadow"><img onclick="getAlbumPhotos('+ data[i].id +', \'popup\')" id="'+ data[i].cover_photo +'" src="img/default.png" style="cursor:pointer;" /><p style="float: left;margin-top:7px;cursor:pointer;" onclick="getAlbumPhotos('+ data[i].id +', \'popup\')">'+data[i]['name']+'</p><input style="float: right;margin-top: 12px;" type="checkbox" id="'+data[i].id+'"><div class="clear"></div><p><a href="javascript:void(0);" class="small button">Download This Album</a></p></div></div>';
+                div = '<div class="large-4 columns my_thumbnails"><div class="panel img-shadow"><img onclick="getAlbumPhotos('+ data[i].id +', \'popup\')" id="'+ data[i].cover_photo +'" src="img/default.png" style="cursor:pointer;" /><p style="float: left;margin-top:7px;cursor:pointer;" onclick="getAlbumPhotos('+ data[i].id +', \'popup\')">'+data[i]['name']+'</p><input style="float: right;margin-top: 12px;" type="checkbox" id="'+data[i].id+'" data-name="'+data[i]['name']+'"><div class="clear"></div><p><a href="javascript:void(0);" class="small button" onclick="downloadOne('+data[i].id+', \''+data[i]['name']+'\')">Download This Album</a></p></div></div>';
                 $('#thumbnail_list').append(div);
                 FB.api('/' + data[i].cover_photo, function (response)
                 {
@@ -138,7 +140,8 @@
                 }
                 else
                 {
-                    albums['abl_'+album_id] = [];
+                    albums = [];
+                    albums.push(album_id, type);
                 }
                 for(i=0;i<count;i++)
                 {
@@ -151,7 +154,7 @@
                     }
                     else
                     {
-                        albums[album_id].push(response.data[i]['source']);
+                        albums.push(response.data[i]['source']);
                     }
                 }
                 if(type == 'popup')
@@ -165,25 +168,11 @@
                     });
                     $('#my_slideshow > li:first').click();
                 }
+                else
+                {
+                    gotAlbums(albums);
+                }
             }
         });
-    }
-
-    function getSelected()
-    {
-        var n = $('input:checkbox:checked').length;
-        if(n > 0)
-        {
-            $('input:checkbox:checked').each(function()
-            {
-                getAlbumPhotos($(this).attr("id"), 'array');
-            });
-            document.getElementById('array').innerHTML = albums;
-            console.log(albums);
-        }
-        else
-        {
-            alert("Please select any one album to download");
-        }
     }
 </script>

@@ -13,6 +13,7 @@
     <script src="js/vendor/jquery.js"></script>
     <script type="text/javascript" src="js/lightGallery.min.js"></script>
     <script type="text/javascript" src="js/masonry.min.js"></script>
+    <script type="text/javascript" src="js/custom.js">  </script>
 
 
     <script>
@@ -69,11 +70,7 @@
 </div>
 <div id="array"></div>
 <div style="display: none;" id="album_photos">
-    <ul id="my_slideshow">
-        <li data-title="title1" data-desc="description1" data-src="img/img1.jpg">
-            <img src="img/thumb1.jpg" />
-        </li>
-    </ul>
+    <ul id="my_slideshow"></ul>
 </div>
 </body>
 </html>

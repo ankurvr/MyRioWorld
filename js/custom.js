@@ -1,18 +1,32 @@
 
-function getSelected()
+function getSelected(type)
 {
     AllAlbums = [];
-    TotalAblums = $('input:checkbox:checked').length;
-    if(TotalAblums > 0)
+    if(type == 'selected')
     {
-        $('input:checkbox:checked').each(function()
+        TotalAblums = $('input:checkbox:checked').length;
+        if(TotalAblums > 0)
         {
-            getAlbumPhotos($(this).attr("id"), $(this).attr('data-name'));
-        });
+            $('input:checkbox:checked').each(function()
+            {
+                getAlbumPhotos($(this).attr("id"), $(this).attr('data-name'));
+            });
+        }
+        else
+        {
+            alert("Please select any one album to download");
+        }
     }
     else
     {
-        alert("Please select any one album to download");
+        TotalAblums = $('input:checkbox').length;
+        if(TotalAblums > 0)
+        {
+            $('input:checkbox').each(function()
+            {
+                getAlbumPhotos($(this).attr("id"), $(this).attr('data-name'));
+            });
+        }
     }
 }
 
@@ -42,7 +56,7 @@ function gotAlbums(data)
             success:function(ResponseData) {
                 if(ResponseData['result'] == 'success')
                 {
-                    alert(ResponseData['msg']);
+                    $('#my_buttons').append('<p><a href="javascript:void(0);" class="button" onclick="window.location = \'downloadAlbum.php?albums='+ResponseData['msg']+'\'">Start Download</a></p>');
                 }
                 else
                 {
@@ -51,5 +65,4 @@ function gotAlbums(data)
             }
         });
     }
-
 }

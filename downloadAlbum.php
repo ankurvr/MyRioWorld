@@ -61,38 +61,32 @@
                 exit();
             }
             break;
-            case 'getZip':
+        }
+    }
+
+    if(empty($_GET) === false)
+    {
+        $file_name = './Downloads/Zips/'.$_GET['albums'];
+
+        // make sure it's a file before doing anything!
+        if(is_file($file_name))
+        {
+            // required for IE
+            if(ini_get('zlib.output_compression'))
             {
-                $file_name = './Downloads/Zips/'.$_GET['filename'];
-
-                // make sure it's a file before doing anything!
-                if(is_file($file_name))
-                {
-                    // required for IE
-                    if(ini_get('zlib.output_compression'))
-                    {
-                        ini_set('zlib.output_compression', 'Off');
-                    }
-
-                    header('Pragma: public'); // required
-                    header('Expires: 0'); // no cache
-                    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-                    header('Cache-Control: private',false);
-                    header('Content-Type: sapplication/zip');
-                    header('Content-Disposition: attachment; filename="'.basename($file_name).'"');
-                    header('Content-Transfer-Encoding: binary');
-                    header('Content-Length: '.filesize($file_name)); // provide file size
-                    readfile($file_name); // push it out
-                    exit();
-
-                }
-                else
-                {
-                    echo json_encode(array('result' => 'error', 'msg' => 'File is not exist on server. Please try again.'));
-                }
+                ini_set('zlib.output_compression', 'Off');
             }
-            default:
-            break;
+
+            header('Pragma: public'); // required
+            header('Expires: 0'); // no cache
+            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+            header('Cache-Control: private',false);
+            header('Content-Type: sapplication/zip');
+            header('Content-Disposition: attachment; filename="'.basename($file_name).'"');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: '.filesize($file_name)); // provide file size
+            readfile($file_name); // push it out
+            exit();
         }
     }
 ?>

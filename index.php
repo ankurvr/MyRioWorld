@@ -19,6 +19,7 @@
     <script type='text/javascript' src='js/slider/jquery.flexslider-min.js'></script>
     <script type='text/javascript' src='js/slider/jquery.seven.min.js'></script>
     <script type='text/javascript' src='js/slider/jquery.reference.js'></script>
+
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
             var tb = $("#seven_container_home").superseven({width: 1920, height: 600, autoplay: false, interval: 5, fullwidth: true, responsive: true, progressbar: true, swipe: true, keyboard: false, scrollmode: false, animation: 300, navtype: 1, repeat_mode: true, lightbox: true, pause_on_hover: true});
@@ -127,9 +128,16 @@
             </div>
         </div>
     </div>
-    <div class="large-12 columns">
-        <p><a href="javascript:void(0);" class="button" onclick="getSelected()">Download Selected Albums</a></p>
-        <p><a href="javascript:void(0);" class="small button" id="FBLoginBtn" onclick="goLogin();">Facebook Login</a></p>
+    <div class="large-12 columns" id="my_buttons">
+        <div class="large-4 column">
+            <p><a href="javascript:void(0);" class="button" onclick="getSelected('selected')">Download Selected Albums</a></p>
+        </div>
+        <div class="large-4 column">
+            <p><a href="javascript:void(0);" class="button" onclick="getSelected('all')">Download All Albums</a></p>
+        </div>
+        <div class="large-4 column">
+            <p><a href="javascript:void(0);" class="small button" id="FBLoginBtn" onclick="goLogin();">Facebook Login</a></p>
+        </div>
     </div>
 </div>
 <div id="array"></div>

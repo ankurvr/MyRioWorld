@@ -89,7 +89,19 @@
             $('#thumbnail_list').html('');
             for (i = 0; i < size; i++)
             {
-                div = '<div class="large-4 columns my_thumbnails"><div class="panel img-shadow"><img onclick="getAlbumPhotos('+ data[i].id +', \'popup\')" id="'+ data[i].cover_photo +'" src="img/default.png" style="cursor:pointer;" /><p style="float: left;margin-top:7px;cursor:pointer;" onclick="getAlbumPhotos('+ data[i].id +', \'popup\')">'+data[i]['name']+'</p><input style="float: right;margin-top: 12px;" type="checkbox" id="'+data[i].id+'" data-name="'+data[i]['name']+'"><div class="clear"></div><p><a href="javascript:void(0);" class="small button" onclick="downloadOne('+data[i].id+', \''+data[i]['name']+'\')">Download This Album</a></p></div></div>';
+                div = '<div class="large-4 columns my_thumbnails">' +
+                        '<div class="img-shadow">'+
+                            '<img onclick="getAlbumPhotos('+ data[i].id +', \'popup\')" id="'+ data[i].cover_photo +'" src="img/default.png" style="cursor:pointer;" />'+
+                            '<div class="panel">'+
+                                '<p>' +
+                                    '<a href="javascript:void(0);" class="button" onclick="downloadOne('+data[i].id+', \''+data[i]['name']+'\')"><span>Download This Album</span></a>' +
+                                '</p>' +
+                                '<p style="float: left;margin-top:7px;cursor:pointer;" onclick="getAlbumPhotos('+ data[i].id +', \'popup\')">'+data[i]['name']+'</p>'+
+                                '<input style="float: right;margin-top: 12px;" type="checkbox" id="'+data[i].id+'" data-name="'+data[i]['name']+'">' +
+                                '<div class="clear"></div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
                 $('#thumbnail_list').append(div);
                 FB.api('/' + data[i].cover_photo, function (response)
                 {
@@ -100,8 +112,18 @@
                 });
             }
             var masonry;
-            $('.my_thumbnails img').load(function(){
+            $('.my_thumbnails img').load(function()
+            {
                 masonry = new Masonry( '#thumbnail_list', { itemSelector: '.my_thumbnails' });
+                $('.img-shadow').hover(function () {
+                    $('.panel', this).stop().animate({
+                        top: '0px'
+                    }, 200);
+                }, function () {
+                    $('.panel', this).stop().animate({
+                        top: '-100px'
+                    },200);
+                });
             });
         }
         else {

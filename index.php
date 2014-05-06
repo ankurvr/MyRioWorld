@@ -34,11 +34,19 @@
     <script src="js/foundation.min.js"></script>
     <script type="text/javascript">
         $(document).foundation();
-
         $(document).ready(function(){
             setTimeout(function(){
                 $('#FBLoginBtn').click();
             }, 1000);
+        });
+        $('.img-shadow').hover(function () {
+            $('.panel', this).stop().animate({
+                top: '0px'
+            }, 200);
+        }, function () {
+            $('.panel', this).stop().animate({
+                top: '-100px'
+            },200);
         });
     </script>
     <?php
@@ -130,13 +138,13 @@
     </div>
     <div class="large-12 columns" id="my_buttons">
         <div class="large-4 column">
-            <p><a href="javascript:void(0);" class="button" onclick="getSelected('selected')">Download Selected Albums</a></p>
+            <p><a href="javascript:void(0);" class="button" onclick="getSelected('selected')"><span>Download Selected Albums</span></a></p>
         </div>
         <div class="large-4 column">
-            <p><a href="javascript:void(0);" class="button" onclick="getSelected('all')">Download All Albums</a></p>
+            <p><a href="javascript:void(0);" class="button" onclick="getSelected('all')"><span>Download All Albums</span></a></p>
         </div>
         <div class="large-4 column">
-            <p><a href="javascript:void(0);" class="small button" id="FBLoginBtn" onclick="goLogin();">Facebook Login</a></p>
+            <p><a href="javascript:void(0);" class="button" id="FBLoginBtn" onclick="goLogin();"><span>Facebook Login</span></a></p>
         </div>
     </div>
 </div>

@@ -16,6 +16,7 @@
     <script type="text/javascript" src="js/lightGallery.min.js"></script>
     <script type="text/javascript" src="js/masonry.min.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="js/foundation/foundation.topbar.js"></script>
     <script type='text/javascript' src='js/slider/jquery.flexslider-min.js'></script>
     <script type='text/javascript' src='js/slider/jquery.seven.min.js'></script>
     <script type='text/javascript' src='js/slider/jquery.reference.js'></script>
@@ -33,8 +34,8 @@
     </script>
     <script src="js/foundation.min.js"></script>
     <script type="text/javascript">
-        $(document).foundation();
         $(document).ready(function(){
+            $(document).foundation();
             setTimeout(function(){
                 $('#FBLoginBtn').click();
             }, 1000);
@@ -56,7 +57,7 @@
 <body>
 <div class="fixed">
     <div class="row">
-        <nav class="top-bar" data-topbar>
+        <nav class="top-bar">
             <div class="contain-to-grid row">
                 <ul class="title-area">
                     <li class="name"><a href="#"><img src="img/my_rio_logo.png" /></a></li>
@@ -67,13 +68,7 @@
                     <ul class="right">
                         <li class="active"><a href="#">Home</a></li>
                         <li><a href="#">About me</a></li>
-                        <li class="has-dropdown"><a href="#">FB Gallery</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Album-1</a></li>
-                                <li><a href="#">Album-2</a></li>
-                                <li><a href="#">Album-3</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="#">FB Gallery</a></li>
                         <li><a href="#">Contact me</a></li>
                     </ul>
                 </section>

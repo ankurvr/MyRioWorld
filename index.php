@@ -16,7 +16,6 @@
     <script type="text/javascript" src="js/lightGallery.min.js"></script>
     <script type="text/javascript" src="js/masonry.min.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
-    <script type="text/javascript" src="js/foundation/foundation.topbar.js"></script>
     <script type='text/javascript' src='js/slider/jquery.flexslider-min.js'></script>
     <script type='text/javascript' src='js/slider/jquery.seven.min.js'></script>
     <script type='text/javascript' src='js/slider/jquery.reference.js'></script>
@@ -32,7 +31,8 @@
             ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
             '.js><\/script>')
     </script>
-    <script src="js/foundation.min.js"></script>
+    <script type="text/javascript" src="js/foundation.min.js"></script>
+    <script type="text/javascript" src="js/foundation/foundation.topbar.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $(document).foundation();
@@ -49,6 +49,9 @@
                 top: '-100px'
             },200);
         });
+        $('#overlay').click(function(){
+            $(this).hide();
+        });
     </script>
     <?php
         require './lib/facebook.php';
@@ -58,7 +61,7 @@
 <div class="fixed">
     <div class="row">
         <nav class="top-bar">
-            <div class="contain-to-grid row">
+            <div class="contain-to-grid">
                 <ul class="title-area">
                     <li class="name"><a href="#"><img src="img/my_rio_logo.png" /></a></li>
                     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
@@ -91,9 +94,6 @@
                                     </div>
                                     <div class="wpb_raw_code wpb_content_element wpb_raw_html">
                                         <div class="wpb_wrapper">
-                                            <style type="text/css">
-                                                #main{padding:0 !important;background-color:#fff !important}#main .avada-row{max-width:100% !important;padding:0 !important;margin:0 !important}
-                                            </style>
                                             <div class="seven_container" id="seven_container_home" style="margin-top:-30px;">
                                                 <div id="seven_viewport" class="seven_viewport">
                                                     <div class="seven_slider">
@@ -104,7 +104,8 @@
                                                         <div class="seven_slide" data-animation="116" data-caption="We are watchers and protectors" image-src="img/slider/30.jpg"></div>
                                                     </div>
                                                 </div>
-                                                <a id="left_btn" class="seven_nav">Previous Slide</a> <a id="right_btn" class="seven_nav right_btn">Next Slide</a></div>
+                                                <a id="left_btn" class="seven_nav">Previous Slide</a> <a id="right_btn" class="seven_nav right_btn">Next Slide</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -116,6 +117,7 @@
         </div>
     </div>
 </div>
+<div id="overlay"></div>
 <div class="row">
     <div class="large-12 columns">
         <h3>The Grid</h3>

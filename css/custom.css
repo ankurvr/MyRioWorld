@@ -244,3 +244,22 @@ body
     background: linear-gradient(to bottom, #3476c6 0%, #489ed9 100%);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset;
 }
+#overlay {
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 999;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+#main {
+    padding: 0 !important;
+    background-color: #fff !important
+}
+#main .avada-row {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important
+}

@@ -32,6 +32,7 @@ function getSelected(type)
 
 function downloadOne(id, name)
 {
+    $('#overlay').show();
     AllAlbums = [];
     TotalAblums = 1;
     getAlbumPhotos(id, name);
@@ -56,7 +57,7 @@ function gotAlbums(data)
             success:function(ResponseData) {
                 if(ResponseData['result'] == 'success')
                 {
-                    $('#my_buttons').append('<p><a href="javascript:void(0);" class="button" onclick="window.location = \'downloadAlbum.php?albums='+ResponseData['msg']+'\'">Start Download</a></p>');
+                    $('#my_buttons').append('<p><a href="javascript:void(0);" class="button" onclick="$(\'#overlay\').hide(); window.location = \'downloadAlbum.php?albums='+ResponseData['msg']+'\'">Start Download</a></p>');
                 }
                 else
                 {

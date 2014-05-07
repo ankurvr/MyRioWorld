@@ -41,6 +41,7 @@
     }());
 
     function goLogin() {
+
         FB.getLoginStatus(function (response) {
             if (response.status === 'connected') {
                 $('#logout_button').show();
@@ -64,9 +65,8 @@
         });
     }
 
-
-
     function getAlbums() {
+        $('#overlay').show();
         FB.api('/me?fields=albums', function (response) {
             //console.dir(response);
             if (typeof response.albums != "undefined") {
@@ -124,6 +124,7 @@
                         top: '-100px'
                     },200);
                 });
+                $('#overlay').hide();
             });
         }
         else {

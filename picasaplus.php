@@ -61,7 +61,7 @@
     // a proxy server
     // $gp->enableRequestDebugLogging('/tmp/gp_requests.log');
 
-    function getAblbums()
+    function getAlbums($user, $pass)
     {
         $serviceName = Zend_Gdata_Photos::AUTH_SERVICE_NAME;
         $client = Zend_Gdata_ClientLogin::getHttpClient($user, $pass, $serviceName);
@@ -89,4 +89,15 @@
             echo "Error: " . $e->getMessage() . "<br />\n";
         }
     }
+
+    function insertAlbum($gp)
+    {
+        $entry = new Zend_Gdata_Photos_AlbumEntry();
+        $entry->setTitle($gp->newTitle("Test Album"));
+        $entry->setSummary($gp->newSummary("This is an album."));
+
+        $createdEntry = $gp->insertAlbumEntry($entry);
+    }
+    insertAlbum($gp);
+    getAlbums($user, $pass);
 ?>
